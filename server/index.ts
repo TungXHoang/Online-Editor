@@ -45,7 +45,6 @@ const redisStore = new RedisStore({ client: redisClient });
 
 //Configure redis client
 
-
 redisClient.on('error', function (err) {
     console.log('Could not establish a connection with redis. ' + err);
 });
@@ -53,18 +52,12 @@ redisClient.on('connect', function () {
     console.log('Connected to redis successfully');
 });
 
-const store = MongoStore.create({
-    mongoUrl: dbUrl,
-    touchAfter: 24 * 60 * 60,
-    crypto: {
-        secret: "thisshouldbeabettersecret!",
-    },
-});
+
 
 const sessionConfig: session.SessionOptions = {
   // store,
     store: new RedisStore({ client: redisClient }),
-    name: "session",
+    name: process.env.SESS_COOKIE,
     secret: "keyword",
     resave: false,
     saveUninitialized: true,
@@ -87,14 +80,13 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.locals.currentUser = req.user; //?
-    // res.locals.success = req.flash("success");
-    // res.locals.error = req.flash("error");
     next();
 });
 
 
 app.use("/", userRoutes);
+
 // Start Server here
 app.listen(port, () => {
    console.log("Server is running on port 8080!");
-});3
+});
