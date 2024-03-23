@@ -7,9 +7,6 @@ import mongoose, {
 } from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
 
-// if (process.env.NODE_ENV !== "production") {
-//   require("dotenv").config();
-// }
 
 import dotenv from "dotenv"
 

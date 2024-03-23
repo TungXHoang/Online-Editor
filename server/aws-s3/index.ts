@@ -2,9 +2,6 @@ import multer from "multer";
 import { S3Client } from "@aws-sdk/client-s3";
 import multerS3 from "multer-s3";
 
-// if (process.env.NODE_ENV !== "production") {
-//     import("dotenv").then((dotenv) => dotenv.config());
-// }
 import dotenv from "dotenv"
 
 dotenv.config();

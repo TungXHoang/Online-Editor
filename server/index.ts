@@ -4,8 +4,6 @@ import { User } from "./models/users";
 // Utils Import
 import express from "express";
 import { Request, Response, NextFunction } from "express";
-import path from "path";
-import { uploadImage } from "./aws-s3";
 
 // DB and Auth Import
 import mongoose from "mongoose";
@@ -15,7 +13,6 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/mernStack";
 import session from "express-session";
-import MongoStore from "connect-mongo";
 
 // Routes Import
 import userRoutes from "./routes/users";

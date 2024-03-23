@@ -1,10 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { User, IUser } from "../models/users";
 import passport from "passport";
-import passportLocal from "passport-local";
-import mongoose from "mongoose";
-// import session from "express-session";
-import MongoStore from "connect-mongo";
+
 
 import dotenv from "dotenv"
 
