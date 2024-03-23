@@ -123,11 +123,16 @@ export const logoutUser = (
     res: Response,
     next: NextFunction
 ) => {
-    req.logout(function (err) {
-        if (err) {
-            return next(err);
-        }
+  req.logout(function (err) {
+    req.session.destroy(msg => {
+      if (msg) {
+        return console.log(msg);
+    }
     });
+    if (err) {
+      return next(err);
+    }
+  });
     res.json({ auth: true, msg: "Logout success" });
 };
 

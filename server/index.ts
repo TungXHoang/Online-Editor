@@ -60,7 +60,7 @@ const sessionConfig: session.SessionOptions = {
     name: process.env.SESS_COOKIE,
     secret: "keyword",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         httpOnly: true,
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
@@ -79,7 +79,7 @@ passport.deserializeUser(User.deserializeUser());
 // app.use(express.static(path.join(__dirname, "frontend/build")));
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-    res.locals.currentUser = req.user; //?
+    res.locals.currentUser = req.user; //
     next();
 });
 
