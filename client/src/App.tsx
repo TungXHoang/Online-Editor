@@ -70,7 +70,7 @@ const App = () => {
             loader: fetchUser(50),
             children: [
                 {
-                    path: "/", // yes, again
+                    path: "/", 
                     element: <page.Root />,
                     errorElement: <page.ErrorHandler />,
                 },

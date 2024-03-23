@@ -14,7 +14,7 @@ interface RegisterFormData {
 }
 
 async function RegisterAPI(formData: FormData | RegisterFormData) {
-    const response = await Axios.post("/register", formData);
+    const response = await Axios.post("/api/users/register", formData);
     if (response.data.auth) {
         return {
             auth: true,
@@ -34,7 +34,7 @@ async function RegisterAPI(formData: FormData | RegisterFormData) {
 }
 
 async function LogoutAPI() {
-    const response = await Axios.post("/logout");
+    const response = await Axios.post("/api/users/logout");
     if (response.data.auth) {
         return response;
     }
@@ -45,7 +45,7 @@ async function LogoutAPI() {
 async function LoginAPI(credential: LoginCredential) {
     const { username, password, email } = credential;
     try {
-        const response = await Axios.post("/login", {
+        const response = await Axios.post("/api/users/login", {
             username: username,
             password: password,
             email: email,
@@ -67,7 +67,7 @@ async function LoginAPI(credential: LoginCredential) {
 }
 
 async function isLoggedIn() {
-    const response = await Axios.post("/auth");
+    const response = await Axios.post("/api/users/auth");
     if (response.data.auth) {
         return {
             auth: response.data.auth,
@@ -79,7 +79,7 @@ async function isLoggedIn() {
 }
 
 async function fetchUserData(id: string, thumbnailDim: number) {
-    const response = await Axios.get(`/${id}/${thumbnailDim}`);
+    const response = await Axios.get(`/api/users/${id}/${thumbnailDim}`);
     if (response) {
         const { username, _id, avatar, thumbnail } = response.data.user;
         // console.log(response.data.user);
