@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+      "noImplicitAny": true,
+      "moduleDetection": "force",
+      "noUnusedParameters": true,
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "skipLibCheck": false //wild card
+  }
+}
