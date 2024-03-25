@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+  backend:
+    restart: on-failure
+    build: ./
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+    links:
+      - redis:redis
+    ports:
+      - '8080:8080'

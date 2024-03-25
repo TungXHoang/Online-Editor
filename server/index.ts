@@ -38,7 +38,10 @@ app.use(express.urlencoded({ extended: true }));
 
 const redisClient = new IORedis(process.env.REDIS_URL || "redis://127.0.0.1:6379");
 
-const redisStore = new RedisStore({ client: redisClient }); 
+// const redisClient = new IORedis({
+//   port: 6379, // Redis port
+//   host: "127.0.0.1", // Redis host
+// });
 
 //Configure redis client
 
@@ -76,14 +79,16 @@ passport.deserializeUser(User.deserializeUser());
 // app.use(express.static(path.join(__dirname, "frontend/build")));
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-    res.locals.currentUser = req.user; //
-    next();
+  res.locals.currentUser = req.user; //
+  next();
 });
 
 
 app.use("/", userRoutes);
 
 // Start Server here
-app.listen(port, () => {
-   console.log("Server is running on port 8080!");
+app.listen( port, () => {
+  console.log("Server is running on port!", port);
+
 });
+
